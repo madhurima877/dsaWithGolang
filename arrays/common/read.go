@@ -8,7 +8,7 @@ import (
 )
 
 func ReadData(filename string) ([][]int, error) {
-	file, err := os.Open("/var/www/html/gocode/src/dsaWithGolang/arrays/common/" + filename)
+	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}
@@ -41,9 +41,5 @@ func ReadData(filename string) ([][]int, error) {
 		testCases = append(testCases, arr)
 	}
 
-	if err := scanner.Err(); err != nil {
-		return nil, err
-	}
-
-	return testCases, nil
+	return testCases, scanner.Err()
 }
